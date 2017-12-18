@@ -1,5 +1,6 @@
 package com.dongganen.quartz.service;
 
+import com.dongganen.quartz.model.TriggerBean;
 import org.quartz.JobDetail;
 import org.quartz.SchedulerException;
 import org.quartz.Trigger;
@@ -7,7 +8,7 @@ import org.quartz.impl.triggers.CronTriggerImpl;
 
 import java.text.ParseException;
 import java.util.Date;
-import java.util.Map;
+import java.util.List;
 
 public interface IQuartzService {
 
@@ -15,7 +16,7 @@ public interface IQuartzService {
      * 获取正在运行的计划任务
      * @return
      */
-    Map<String,Trigger> getTriggers();
+    List<TriggerBean> getTriggers();
 
     /**
      * 开始任务
@@ -27,35 +28,29 @@ public interface IQuartzService {
 
     /**
      * 暂停任务
-     * @param taskName
-     * @param groupName
+     * @param triggerName
+     * @param triggerGroup
      * @throws SchedulerException
      */
-    void pauseTask(String taskName, String groupName) throws SchedulerException;
+    void pauseTask(String triggerName, String triggerGroup) throws SchedulerException;
 
     /**
      * 重启任务
-     * @param taskName
-     * @param groupName
+     * @param triggerName
+     * @param triggerGroup
      */
-    void resumeTask(String taskName, String groupName) throws SchedulerException;
+    void resumeTask(String triggerName, String triggerGroup) throws SchedulerException;
 
     /**
      * 删除任务
-     * @param taskName
-     * @param groupName
+     * @param triggerName
+     * @param triggerGroup
      * @return
      * @throws SchedulerException
      */
-    boolean deleteTask(String taskName, String groupName) throws SchedulerException;
+    boolean deleteTask(String triggerName, String triggerGroup) throws SchedulerException;
 
-    /**
-     * 生成一个新的JobDetail
-     * @param jobClass
-     * @param jobName
-     * @return
-     */
-    JobDetail createJobDetail(Class jobClass, String jobName);
+
 
     /**
      * 生成一个新的CronTrigger
@@ -66,6 +61,6 @@ public interface IQuartzService {
      * @param jobDetail
      * @return
      */
-    CronTriggerImpl createCronTrigger(String triggerName, Date startTime, Date endTime, String cronExpression, JobDetail jobDetail) throws ParseException;
+    CronTriggerImpl createCronTrigger(String triggerName, String triggerGroup, Date startTime, Date endTime, String cronExpression, JobDetail jobDetail) throws ParseException;
     
 }

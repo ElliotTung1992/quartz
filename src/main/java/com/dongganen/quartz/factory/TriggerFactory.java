@@ -9,6 +9,7 @@ import org.quartz.SimpleTrigger;
 import org.quartz.Trigger;
 import org.quartz.impl.triggers.CronTriggerImpl;
 import org.quartz.impl.triggers.SimpleTriggerImpl;
+import org.springframework.util.StringUtils;
 
 import java.text.ParseException;
 import java.util.Date;
@@ -64,7 +65,13 @@ public class TriggerFactory {
         String cronExpression = cronTriggerModel.getCronExpression();
         CronTriggerImpl cronTrigger = new CronTriggerImpl();
         cronTrigger.setName(cronTriggerModel.getTriggerName());
-        cronTrigger.setGroup(Scheduler.DEFAULT_GROUP);
+        String triggerGroup = cronTriggerModel.getTriggerGroup();
+        if(StringUtils.isEmpty(triggerGroup)){
+            cronTrigger.setGroup(Scheduler.DEFAULT_GROUP);
+        }else{
+            cronTrigger.setGroup(triggerGroup);
+        }
+
         cronTrigger.setJobKey(jobDetail.getKey());
         //cronTrigger.setMisfireInstruction(Trigger.MISFIRE_INSTRUCTION_IGNORE_MISFIRE_POLICY);
         cronTrigger.setMisfireInstruction(CronTriggerImpl.MISFIRE_INSTRUCTION_DO_NOTHING);

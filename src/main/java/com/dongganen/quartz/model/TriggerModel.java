@@ -14,6 +14,7 @@ public abstract class TriggerModel {
     public static final String CRON_TRIGGER_TYPE = "CRON_TRIGGER";
 
     private String triggerName; // 触发器唯一名称
+    private String triggerGroup;  //触发器组名称
     private Date startTime;  // 开始时间
     private Date endTime;    // 结束时间
 
@@ -39,6 +40,14 @@ public abstract class TriggerModel {
 
     public void setEndTime(Date endTime) {
         this.endTime = endTime;
+    }
+
+    public String getTriggerGroup() {
+        return triggerGroup;
+    }
+
+    public void setTriggerGroup(String triggerGroup) {
+        this.triggerGroup = triggerGroup;
     }
 
     protected abstract String getTaskTriggerType();
