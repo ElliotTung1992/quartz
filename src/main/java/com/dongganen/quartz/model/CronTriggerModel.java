@@ -13,7 +13,7 @@ public class CronTriggerModel extends TriggerModel {
     }
 
     @Override
-    protected String getTaskTriggerType() {
+    public String getTaskTriggerType() {
         return TriggerModel.CRON_TRIGGER_TYPE;
     }
 

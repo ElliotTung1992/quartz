@@ -50,17 +50,4 @@ public interface IQuartzService {
      */
     boolean deleteTask(String triggerName, String triggerGroup) throws SchedulerException;
 
-
-
-    /**
-     * 生成一个新的CronTrigger
-     * @param triggerName
-     * @param startTime
-     * @param endTime
-     * @param cronExpression
-     * @param jobDetail
-     * @return
-     */
-    CronTriggerImpl createCronTrigger(String triggerName, String triggerGroup, Date startTime, Date endTime, String cronExpression, JobDetail jobDetail) throws ParseException;
-    
 }

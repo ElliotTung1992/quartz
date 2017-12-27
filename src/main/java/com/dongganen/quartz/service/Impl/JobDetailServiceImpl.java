@@ -24,7 +24,7 @@ public class JobDetailServiceImpl implements IJobDetailService{
     @Override
     public JobDetail createJobDetail(Class jobClass, String jobName, String jobGroup) throws SchedulerException {
         JobDetail jobDetail = JobDetailFactory.createJobDetail(jobClass, jobName, jobGroup);
-        scheduler.addJob(jobDetail, true);
+        scheduler.addJob(jobDetail, false);
         return jobDetail;
     }
 

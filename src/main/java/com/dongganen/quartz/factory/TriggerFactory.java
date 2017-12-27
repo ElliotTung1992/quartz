@@ -23,7 +23,7 @@ public class TriggerFactory {
     }
 
     public static Trigger createTrigger(TriggerModel triggerModel, JobDetail jobDetail) throws ParseException {
-        if (TriggerModel.CRON_TRIGGER_TYPE.equals(triggerModel)) {
+        if (TriggerModel.CRON_TRIGGER_TYPE.equals(triggerModel.getTaskTriggerType())) {
             return createCronTrigger((CronTriggerModel) triggerModel, jobDetail);
         } else {
             return createSimpleTrigger((SimpleTriggerModel) triggerModel, jobDetail);
@@ -38,6 +38,8 @@ public class TriggerFactory {
         SimpleTriggerImpl simpleTrigger = new SimpleTriggerImpl();
         simpleTrigger.setName(simpleTriggerModel.getTriggerName());
         simpleTrigger.setGroup(Scheduler.DEFAULT_GROUP);
+
+        //trigger绑定jobdetail
         simpleTrigger.setJobKey(jobDetail.getKey());
         Date now = new Date();
         if (startTime != null && startTime.getTime() > now.getTime()) {
@@ -71,7 +73,7 @@ public class TriggerFactory {
         }else{
             cronTrigger.setGroup(triggerGroup);
         }
-
+        //trigger绑定jobdetail
         cronTrigger.setJobKey(jobDetail.getKey());
         //cronTrigger.setMisfireInstruction(Trigger.MISFIRE_INSTRUCTION_IGNORE_MISFIRE_POLICY);
         cronTrigger.setMisfireInstruction(CronTriggerImpl.MISFIRE_INSTRUCTION_DO_NOTHING);

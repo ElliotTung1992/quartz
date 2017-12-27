@@ -50,7 +50,7 @@ public abstract class TriggerModel {
         this.triggerGroup = triggerGroup;
     }
 
-    protected abstract String getTaskTriggerType();
+    public abstract String getTaskTriggerType();
 
     @Override
     public String toString() {

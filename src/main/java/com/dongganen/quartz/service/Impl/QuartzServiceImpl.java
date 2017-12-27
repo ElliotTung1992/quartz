@@ -84,18 +84,4 @@ public class QuartzServiceImpl implements IQuartzService{
         return scheduler.unscheduleJob(triggerKey);
     }
 
-
-
-    @Override
-    public CronTriggerImpl createCronTrigger(String triggerName, String triggerGroup, Date startTime, Date endTime, String cronExpression, JobDetail jobDetail) throws ParseException {
-        CronTriggerModel cronTriggerModel = new CronTriggerModel();
-        cronTriggerModel.setTriggerName(triggerName);
-        cronTriggerModel.setStartTime(startTime);
-        cronTriggerModel.setEndTime(endTime);
-        cronTriggerModel.setCronExpression(cronExpression);
-        cronTriggerModel.setTriggerGroup(triggerGroup);
-        CronTriggerImpl cronTrigger = TriggerFactory.createCronTrigger(cronTriggerModel, jobDetail);
-        return cronTrigger;
-    }
-
 }

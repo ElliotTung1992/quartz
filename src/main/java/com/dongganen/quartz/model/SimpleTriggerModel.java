@@ -23,7 +23,7 @@ public class SimpleTriggerModel extends TriggerModel {
 
 
     @Override
-    protected String getTaskTriggerType() {
+    public String getTaskTriggerType() {
         return TriggerModel.SIMPLE_TRIGGER_TYPE;
     }
 
