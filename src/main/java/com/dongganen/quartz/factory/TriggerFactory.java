@@ -38,6 +38,8 @@ public class TriggerFactory {
         SimpleTriggerImpl simpleTrigger = new SimpleTriggerImpl();
         simpleTrigger.setName(simpleTriggerModel.getTriggerName());
         simpleTrigger.setGroup(Scheduler.DEFAULT_GROUP);
+        //详情描述
+        String desc = simpleTriggerModel.getDesc();
 
         //trigger绑定jobdetail
         simpleTrigger.setJobKey(jobDetail.getKey());
@@ -53,6 +55,8 @@ public class TriggerFactory {
         if (repeatCount != null && repeatCount > 0) {
             repeat = repeatCount - 1L;
         }
+        //设置详情描述
+        simpleTrigger.setDescription(desc);
         simpleTrigger.setRepeatCount(repeat.intValue());
         simpleTrigger.setMisfireInstruction(SimpleTriggerImpl.MISFIRE_INSTRUCTION_RESCHEDULE_NEXT_WITH_REMAINING_COUNT);//忽略已错过触发时间的任务,
         return simpleTrigger;
@@ -73,6 +77,9 @@ public class TriggerFactory {
         }else{
             cronTrigger.setGroup(triggerGroup);
         }
+        //详情描述
+        String desc = cronTriggerModel.getDesc();
+
         //trigger绑定jobdetail
         cronTrigger.setJobKey(jobDetail.getKey());
         //cronTrigger.setMisfireInstruction(Trigger.MISFIRE_INSTRUCTION_IGNORE_MISFIRE_POLICY);
@@ -83,6 +90,9 @@ public class TriggerFactory {
         } else {
             cronTrigger.setStartTime(new Date(System.currentTimeMillis() + 1 * 10 * 1000));
         }
+        //设置详情描述
+        cronTrigger.setDescription(desc);
+
         cronTrigger.setEndTime(endTime);
         cronTrigger.setCronExpression(cronExpression);
         return cronTrigger;

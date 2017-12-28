@@ -17,6 +17,7 @@ public abstract class TriggerModel {
     private String triggerGroup;  //触发器组名称
     private Date startTime;  // 开始时间
     private Date endTime;    // 结束时间
+    private String desc;     // 任务描述
 
     public String getTriggerName() {
         return triggerName;
@@ -52,13 +53,22 @@ public abstract class TriggerModel {
 
     public abstract String getTaskTriggerType();
 
+    public String getDesc() {
+        return desc;
+    }
+
+    public void setDesc(String desc) {
+        this.desc = desc;
+    }
+
     @Override
     public String toString() {
         return "TriggerModel{" +
                 "triggerName='" + triggerName + '\'' +
+                ", triggerGroup='" + triggerGroup + '\'' +
                 ", startTime=" + startTime +
                 ", endTime=" + endTime +
-                ", taskTriggerType='" + getTaskTriggerType() + '\'' +
+                ", desc='" + desc + '\'' +
                 '}';
     }
 }

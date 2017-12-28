@@ -22,6 +22,10 @@ public class TriggerBean {
     private Date startTime;             //开始时间
     private Date endTime;               //结束时间
     private String cronExpression;      //表达式
+    private Integer type;               //类型0:SimpleTrigger 1:CronTrigger
+    private Integer repeatCount;           //重复次数
+    private long repeatInterval;        //重复间隔
+    private String desc;                //详情描述
 
     public String getTriggerName() {
         return triggerName;
@@ -93,5 +97,56 @@ public class TriggerBean {
 
     public void setCronExpression(String cronExpression) {
         this.cronExpression = cronExpression;
+    }
+
+    public Integer getType() {
+        return type;
+    }
+
+    public void setType(Integer type) {
+        this.type = type;
+    }
+
+    public long getRepeatInterval() {
+        return repeatInterval;
+    }
+
+    public void setRepeatInterval(long repeatInterval) {
+        this.repeatInterval = repeatInterval;
+    }
+
+    public Integer getRepeatCount() {
+        return repeatCount;
+    }
+
+    public void setRepeatCount(Integer repeatCount) {
+        this.repeatCount = repeatCount;
+    }
+
+    public String getDesc() {
+        return desc;
+    }
+
+    public void setDesc(String desc) {
+        this.desc = desc;
+    }
+
+    @Override
+    public String toString() {
+        return "TriggerBean{" +
+                "triggerName='" + triggerName + '\'' +
+                ", triggerGroup='" + triggerGroup + '\'' +
+                ", triggerState='" + triggerState + '\'' +
+                ", jobName='" + jobName + '\'' +
+                ", jobGroup='" + jobGroup + '\'' +
+                ", className='" + className + '\'' +
+                ", startTime=" + startTime +
+                ", endTime=" + endTime +
+                ", cronExpression='" + cronExpression + '\'' +
+                ", type=" + type +
+                ", repeatCount=" + repeatCount +
+                ", repeatInterval=" + repeatInterval +
+                ", desc='" + desc + '\'' +
+                '}';
     }
 }

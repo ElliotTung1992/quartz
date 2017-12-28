@@ -44,47 +44,68 @@ public class SampleJobRunner implements CommandLineRunner{
 
     @Override
     public void run(String... strings) throws Exception {
-        quartzService.deleteTask("myTrigger", "DEFAULT");
+//        quartzService.deleteTask("myTrigger", "DEFAULT");
 //        quartzService.deleteTask("myTrigger", "group1");
 //        jobDetailService.createJobDetail(MyJob.class, "myJob", "");
 //        jobDetailService.createJobDetail(SeJob.class, "seJob", "");
 //        List<JobBean> jobBeans = jobDetailService.queryJobDetailList();
 //        jobDetailService.deleteJobDetail("myJob", "DEFAULT");
 //        quartzService.createCronTrigger("aaa", null, null, null, "1 * * * * ?", scheduler.getJobDetail(new JobKey("myJob", "DEFAULT")));
-
-//        SimpleTriggerModel simpleTriggerModel = new SimpleTriggerModel();
-//        simpleTriggerModel.setTriggerName("myTrigger");
-//        simpleTriggerModel.setTriggerGroup("DEFAULT");
-//        simpleTriggerModel.setStartTime(new Date());
-//        simpleTriggerModel.setRepeatInterval(10l);
-//        simpleTriggerModel.setRepeatCount(10l);
-//
-//        LocalDate localDate = LocalDate.now().plusDays(1);
-//        ZonedDateTime atZone = localDate.atStartOfDay(ZoneId.systemDefault());
-//        Date date = Date.from(atZone.toInstant());
-//
-//        simpleTriggerModel.setEndTime(date);
-//
-//        JobKey jobKey = new JobKey("myJob", "DEFAULT");
-//        JobDetail jobDetail = scheduler.getJobDetail(jobKey);
-////        JobDetail jobDetail = JobDetailFactory.createJobDetail(MyJob.class, "myJob", null);
-//        triggerService.createSimpleTrigger(simpleTriggerModel, jobDetail);
-
-        CronTriggerModel cronTriggerModel = new CronTriggerModel();
-        cronTriggerModel.setTriggerName("myTrigger1");
-        cronTriggerModel.setTriggerGroup("DEFAULT");
-        cronTriggerModel.setStartTime(new Date());
-
-        LocalDate localDate = LocalDate.now().plusDays(1);
-        ZonedDateTime atZone = localDate.atStartOfDay(ZoneId.systemDefault());
-        Date date = Date.from(atZone.toInstant());
-
-        cronTriggerModel.setEndTime(date);
-        cronTriggerModel.setCronExpression("* * * * * ?");
-
-        JobKey jobKey = new JobKey("myJob", "DEFAULT");
-        JobDetail jobDetail = scheduler.getJobDetail(jobKey);
-        triggerService.createTrigger(cronTriggerModel, jobDetail);
-
+//        createSimpleTrigger();
+//        quartzService.deleteTask("myTrigger1", "DEFAULT");
+//        createCronTrigger();
+//        createSimpleTrigger();
+//        List<TriggerBean> triggers = quartzService.getTriggers();
+//        System.out.println(triggers);
     }
+
+//    public void createSimpleTrigger(){
+//        try {
+//            SimpleTriggerModel simpleTriggerModel = new SimpleTriggerModel();
+//            simpleTriggerModel.setTriggerName("myTrigger");
+//            simpleTriggerModel.setTriggerGroup("DEFAULT");
+//            simpleTriggerModel.setStartTime(new Date());
+//            simpleTriggerModel.setRepeatInterval(10l);
+//            simpleTriggerModel.setRepeatCount(10l);
+//            simpleTriggerModel.setDesc("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+//
+//            LocalDate localDate = LocalDate.now().plusDays(1);
+//            ZonedDateTime atZone = localDate.atStartOfDay(ZoneId.systemDefault());
+//            Date date = Date.from(atZone.toInstant());
+//
+//            simpleTriggerModel.setEndTime(date);
+//
+//            JobKey jobKey = new JobKey("myJob", "DEFAULT");
+//
+//            JobDetail jobDetail = scheduler.getJobDetail(jobKey);
+//
+//            triggerService.createTrigger(simpleTriggerModel, jobDetail);
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//    }
+//
+//    public void createCronTrigger(){
+//        try {
+//            CronTriggerModel cronTriggerModel = new CronTriggerModel();
+//            cronTriggerModel.setTriggerName("myTrigger1");
+//            cronTriggerModel.setTriggerGroup("DEFAULT");
+//            cronTriggerModel.setStartTime(new Date());
+//            cronTriggerModel.setDesc("bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb");
+//
+//            LocalDate localDate = LocalDate.now().plusDays(1);
+//            ZonedDateTime atZone = localDate.atStartOfDay(ZoneId.systemDefault());
+//            Date date = Date.from(atZone.toInstant());
+//
+//            cronTriggerModel.setEndTime(date);
+//            cronTriggerModel.setCronExpression("* * * * * ?");
+//
+//            JobKey jobKey = new JobKey("myJob", "DEFAULT");
+//            JobDetail jobDetail = scheduler.getJobDetail(jobKey);
+//            triggerService.createTrigger(cronTriggerModel, jobDetail);
+//
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//    }
 }

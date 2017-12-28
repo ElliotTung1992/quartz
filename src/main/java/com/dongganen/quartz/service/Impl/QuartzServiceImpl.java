@@ -1,8 +1,5 @@
 package com.dongganen.quartz.service.Impl;
 
-import com.dongganen.quartz.factory.JobDetailFactory;
-import com.dongganen.quartz.factory.TriggerFactory;
-import com.dongganen.quartz.model.CronTriggerModel;
 import com.dongganen.quartz.model.TriggerBean;
 import com.dongganen.quartz.service.IQuartzService;
 import org.quartz.*;
@@ -12,7 +9,6 @@ import org.quartz.impl.triggers.SimpleTriggerImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.text.ParseException;
 import java.util.*;
 
 @Service
@@ -40,6 +36,7 @@ public class QuartzServiceImpl implements IQuartzService{
                     triggerBean.setJobName(jobKey.getName());
                     triggerBean.setJobGroup(jobKey.getGroup());
                     triggerBean.setClassName(jobClassName);
+                    triggerBean.setDesc(trigger.getDescription());
                     //获取设置定时器状态
                     String state = scheduler.getTriggerState(triggerKey).toString();
                     triggerBean.setTriggerState(state);
@@ -51,6 +48,15 @@ public class QuartzServiceImpl implements IQuartzService{
                         CronTriggerImpl cronTrigger = (CronTriggerImpl) trigger;
                         String cronExpression = cronTrigger.getCronExpression();
                         triggerBean.setCronExpression(cronExpression);
+                        triggerBean.setType(1);
+                    }else{
+                        SimpleTriggerImpl simpleTrigger = (SimpleTriggerImpl) trigger;
+                        int repeatCount = simpleTrigger.getRepeatCount();
+                        //单位秒
+                        long repeatInterval = simpleTrigger.getRepeatInterval() / 1000;
+                        triggerBean.setType(0);
+                        triggerBean.setRepeatCount(repeatCount);
+                        triggerBean.setRepeatInterval(repeatInterval);
                     }
                     triggerBeans.add(triggerBean);
                 }
